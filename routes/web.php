@@ -14,3 +14,22 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix'=>'admin'], function(){
+	Route::group(['prefix'=>'theloai'], function(){
+		Route::get('danhsach', 'TheLoaiController@getDanhSach');
+		Route::get('them', 'TheLoaiController@getThem');
+		Route::get('sua', 'TheLoaiController@getSua');
+	});
+
+	Route::group(['prefix'=>'loaitin'], function(){
+		Route::get('danhsach', 'LoaiTinController@getDanhSach');
+		Route::get('them', 'LoaiTinController@getThem');
+		Route::get('sua', 'LoaiTinController@getSua');
+	});
+
+	Route::group(['prefix'=>'tintuc'], function(){
+		Route::get('danhsach', 'TinTucController@getDanhSach');
+		Route::get('them', 'TinTucController@getThem');
+		Route::get('sua', 'TinTucController@getSua');
+	});
