@@ -10,6 +10,11 @@ class TheLoai extends Model
 
     public function loaitin()
     {
-    	return $this->hasMany(LoaiTin::class);
+    	return $this->hasMany(LoaiTin::class, 'idTheLoai', 'id');
     }   
+
+    public function tintuc()
+    {
+    	return $this->hasManyThrough(TinTuc::class, LoaiTin::class, 'idTheLoai', 'idLoaiTin', 'id');
+    }
 }

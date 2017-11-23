@@ -17,6 +17,7 @@
             </div>
             <!-- /.col-l-12 -->
             <form action="" method="POST" accept-charset="utf-8" class="form-inline">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="input-group">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">

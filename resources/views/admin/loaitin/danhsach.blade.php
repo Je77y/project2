@@ -8,8 +8,16 @@
                             <small>Danh sach</small>
                         </h1>
             </div>
+            @if (session('thongbao'))
+            <div class="col-lg-12">
+                <div class="alert-success alert">
+                    {{ session('thongbao') }}
+                </div>
+            </div>
+            @endif
             <!-- /.col-lg-12 -->
             <form action="" method="POST" accept-charset="utf-8" class="form-inline">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="input-group">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">
@@ -19,36 +27,34 @@
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
             </form>
+            <br/>
             <table class="table table-striped table-hover" id="dataTables-example">
                 <thead>
-                    <tr align="center">
+                    <tr>
                         <th>ID</th>
-                        <th>ID The loai</th>
                         <th>Ten</th>
                         <th>Ten khong dau</th>
+                        <th>The loai</th>
                         <th>Ngay tao</th>
                         <th>Ngay cap nhat</th>
-                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>Tin Tức</td>
-                        <td>None</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                    @foreach ($DSloaitin as $loaitin)
+                    <tr class="odd gradeX">
+                        <td>{{ $loaitin->id }}</td>
+                        <td>{{ $loaitin->Ten}}</td>
+                        <td>{{ $loaitin->TenKhongDau }}</td>
+                        <td>{{ $loaitin->theloai->Ten }}</td>
+                        <td>{{ $loaitin->created_at}}</td>
+                        <td>{{ $loaitin->created_at}}</td>
+                        <td class="center">
+                            <a href="/admin/loaitin/sua/{{ $loaitin->id }}"><i class="fa fa-pencil fa-fw"></i></a>
+                            <a href="/admin/loaitin/xoa/{{ $loaitin->id }}"><i class="fa fa-trash-o  fa-fw"></i></a>
+                        </td>
                     </tr>
-                    <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>Bóng Đá</td>
-                        <td>Thể Thao</td>
-                        <td>Ẩn</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
