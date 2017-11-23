@@ -9,6 +9,16 @@
                         </h1>
             </div>
             <!-- /.col-lg-12 -->
+            <form action="" method="POST" accept-charset="utf-8" class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">

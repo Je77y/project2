@@ -10,6 +10,6 @@ class TheLoai extends Model
 
     public function loaitin()
     {
-    	return $this->hasMany(LoaiTin::class)
+    	return $this->hasMany(LoaiTin::class);
     }   
 }

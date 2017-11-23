@@ -8,36 +8,43 @@
                             <small>Danh sach</small>
                         </h1>
             </div>
-            <!-- /.col-lg-12 -->
+            <!-- /.col-l-12 -->
+            <form action="" method="POST" accept-charset="utf-8" class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
+            <br>
             <table class="table table-striped table-hover" id="dataTables-example">
                 <thead>
-                    <tr align="center">
+                    <tr>
                         <th>ID</th>
                         <th>Ten</th>
                         <th>Ten khong dau</th>
                         <th>Ngay tao</th>
                         <th>Ngay cap nhat</th>
                         <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>Tin Tức</td>
-                        <td>None</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                    @foreach ($DStheloai as $theloai)
+                    <tr class="odd gradeX" >
+                        <td>{{ $theloai->id }}</td>
+                        <td>{{ $theloai->Ten }}</td>
+                        <td>{{ $theloai->TenKhongDau }}</td>
+                        <td>{{ $theloai->created_at }}</td>
+                        <td>{{ $theloai->updated_at }}</td>
+                        <td class="center">
+                            <a href="#"><i class="fa fa-pencil fa-fw"></i></a>
+                            <a href="#"><i class="fa fa-trash-o  fa-fw"></i></a>
+                        </td>
                     </tr>
-                    <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>Bóng Đá</td>
-                        <td>Thể Thao</td>
-                        <td>Ẩn</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

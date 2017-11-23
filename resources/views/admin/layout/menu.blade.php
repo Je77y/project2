@@ -19,10 +19,10 @@
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> The loai<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Danh sach the loai</a>
+                        <a href="/admin/theloai/danhsach">Danh sach the loai</a>
                     </li>
                     <li>
-                        <a href="#">Them the loai</a>
+                        <a href="/admin/theloai/them">Them the loai</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

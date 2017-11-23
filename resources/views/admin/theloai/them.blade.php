@@ -11,14 +11,21 @@
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form action="" method="POST">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}<br>
+                        @endforeach
+                    </div>
+                @endif
+                @if (session('thongbao'))
+                    <div class="alert alert-success">{{ session('thongbao') }}</div>
+                @endif
+                <form action="/admin/theloai/them" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label>Ten</label>
-                        <input class="form-control" name="txtCateName" placeholder="Ten" />
-                    </div>
-                    <div class="form-group">
-                        <label>Ten khong dau</label>
-                        <input class="form-control" name="txtOrder" placeholder="Ten khong dau" />
+                        <input class="form-control" name="name" placeholder="Ten" />
                     </div>
                     <button type="submit" class="btn btn-primary">Them</button>
                     <button type="reset" class="btn btn-default">Lam lai</button>
