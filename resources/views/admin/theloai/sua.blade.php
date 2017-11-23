@@ -5,23 +5,31 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">The loai
-                            <small>Sua</small>
+                            <small>{{ $theloai->Ten }}</small>
                         </h1>
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form action="" method="POST">
-                    <div class="form-group">
-                        <label>Ten</label>
-                        <input class="form-control" name="txtCateName" placeholder="Ten" />
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $err)
+                            {{ $err }}<br/>
+                        @endforeach
                     </div>
+                @endif
+
+                @if (session('thongbao'))
+                    <div class="alert-success alert">{{ session('thongbao') }}</div>
+                @endif
+                <form action="admin/theloai/sua/{{ $theloai->id }}" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label>Ten khong dau</label>
-                        <input class="form-control" name="txtOrder" placeholder="Ten khong dau" />
+                        <label>Ten the loai</label>
+                        <input class="form-control" name="name" placeholder="Dien ten the loai" value="{{ $theloai->Ten }}"/>
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Sua</button>
-                    <button type="reset" class="btn btn-default">Lam lai</button>
+                    <button type="reset" class="btn btn-default">Lam moi</button>
                 <form>
             </div>
         </div>

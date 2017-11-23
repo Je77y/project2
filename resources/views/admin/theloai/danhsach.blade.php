@@ -8,6 +8,13 @@
                             <small>Danh sach</small>
                         </h1>
             </div>
+            <div class="col-md-12">
+                @if (session('thongbao'))
+                <div class="alert-success alert">
+                    {{session('thongbao')}}
+                </div>
+                @endif
+            </div>
             <!-- /.col-l-12 -->
             <form action="" method="POST" accept-charset="utf-8" class="form-inline">
                 <div class="input-group">
@@ -33,15 +40,15 @@
                 </thead>
                 <tbody>
                     @foreach ($DStheloai as $theloai)
-                    <tr class="odd gradeX" >
+                    <tr class="odd gradeX">
                         <td>{{ $theloai->id }}</td>
                         <td>{{ $theloai->Ten }}</td>
                         <td>{{ $theloai->TenKhongDau }}</td>
                         <td>{{ $theloai->created_at }}</td>
                         <td>{{ $theloai->updated_at }}</td>
                         <td class="center">
-                            <a href="#"><i class="fa fa-pencil fa-fw"></i></a>
-                            <a href="#"><i class="fa fa-trash-o  fa-fw"></i></a>
+                            <a href="/admin/theloai/sua/{{ $theloai->id }}"><i class="fa fa-pencil fa-fw"></i></a>
+                            <a href="/admin/theloai/xoa/{{ $theloai->id }}"><i class="fa fa-trash-o  fa-fw"></i></a>
                         </td>
                     </tr>
                     @endforeach
