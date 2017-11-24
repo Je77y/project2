@@ -25,10 +25,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Ten</th>
-                        <th>Ngay tao</th>
-                        <th>Ngay sua</th>
-                        <th>So luot xem</th>
+                        <th>Tom tat</th>
                         <th>Loai tin</th>
+                        <th>Xem</th>
+                        <th>Noi bat</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -36,11 +36,19 @@
                     @foreach ($DStintuc as $tintuc)
                     <tr class="odd gradeX">
                         <td>{{ $tintuc->id }}</td>
-                        <td>{{ $tintuc->TieuDe }}</td>
-                        <td>{{ $tintuc->created_at }}</td>
-                        <td>{{ $tintuc->updated_at }}</td>
-                        <td>{{ $tintuc->SoLuotXem }}</td>
+                        <td>{{ $tintuc->TieuDe }}<br/>
+                            <img src="upload/tintuc/{{ $tintuc->Hinh }}" width="100px" height="100px">
+                        </td>
+                        <td>{{ $tintuc->TomTat }}</td>
                         <td>{{ $tintuc->loaitin->Ten }}</td>
+                        <td>{{ $tintuc->SoLuotXem }}</td>
+                        <td>
+                            @if ($tintuc->NoiBat == 0)
+                                {{"Khong"}}
+                            @else
+                                {{"Co"}}
+                            @endif
+                        </td>
                         <td class="center">
                             <a href="/admin/tintuc/sua/{{ $tintuc->id }}"><i class="fa fa-pencil fa-fw"></i></a>
                             <a href="/admin/tintuc/xoa/{{ $tintuc->id }}"><i class="fa fa-trash-o  fa-fw"></i></a>

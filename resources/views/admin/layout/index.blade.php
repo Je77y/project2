@@ -38,9 +38,13 @@
 
     </div>
     <!-- /#wrapper -->
-
+    
+    <!-- ckeditor -->
+    <script src="ckeditor/ckeditor.js"></script>
     <!-- jQuery -->
     <script src="admin_asset/bower_components/jquery/dist/jquery.min.js"></script>
+
+    @yield('script')
 
     <!-- Bootstrap Core JavaScript -->
     <script src="admin_asset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -52,7 +56,7 @@
     <script src="admin_asset/dist/js/sb-admin-2.js"></script>
 
     <!-- DataTables JavaScript -->
-    <script src="admin_asset/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="admin_asset/bower_components/dataTables/media/js/jquery.dataTables.min.js"></script>
     <script src="admin_asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
@@ -64,7 +68,7 @@
     });
     </script>
 
-    @yield('script')
+    
 </body>
 
 </html>

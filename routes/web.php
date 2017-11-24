@@ -35,12 +35,17 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::get('danhsach', 'TinTucController@getDanhSach');
 
 		Route::get('them', 'TinTucController@getThem');
-
+		Route::post('them', 'TinTucController@postThem');
+		
 		Route::get('sua', 'TinTucController@getSua');
 
 		Route::post('xoa', 'TinTucController@postXoa');
 
 		Route::post('timkiem', 'TinTucController@postTim');
+	});
+
+	Route::group(['prefix'=>'ajax'], function(){
+		Route::get('loaitin/{idTheLoai}', 'AjaxController@getLoaiTin');
 	});
 
 });
