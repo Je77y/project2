@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LoaiTin;
 use App\TheLoai;
+use App\Http\Request\LoaiTinFormRequest;
 
 class LoaiTinController extends Controller
 {
     public function getDanhSach()
     {
-    	$DSloaitin = LoaiTin::all();
+    	$DSloaitin = LoaiTin::simplePaginate(9);
     	return view('admin/loaitin/danhsach', compact('DSloaitin'));
     }
 

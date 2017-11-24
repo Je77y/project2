@@ -9,7 +9,7 @@ class TheLoaiController extends Controller
 {
     public function getDanhSach()
     {
-        $DStheloai = TheLoai::all();
+        $DStheloai = TheLoai::simplePaginate(8);;
     	return view('admin/theloai/danhsach', compact('DStheloai'));
     }
 
@@ -66,5 +66,15 @@ class TheLoaiController extends Controller
         $theloai = TheLoai::find($id);
         $theloai->delete();
         return redirect('admin/theloai/danhsach')->with('thongbao', 'Xoa thanh cong');
+    }
+
+    public function postTim(Request $request)
+    {
+        $tukhoa = $request->get('tukhoa');
+        if ($tukhoa == null)
+            $DStheloai = TheLoai::simplePaginate(8);
+        else
+            $DStheloai = TheLoai::where('Ten', 'LIKE', '%'.$tukhoa.'%')->get()->simplePaginate(8);
+        return view('admin/theloai/danhsach', compact('DStheloai'));
     }
 }

@@ -16,7 +16,7 @@
                 @endif
             </div>
             <!-- /.col-l-12 -->
-            <form action="" method="POST" accept-charset="utf-8" class="form-inline">
+            <form action="admin/theloai/timkiem" method="POST" accept-charset="utf-8" class="form-inline">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="input-group">
                     <div class="input-group-btn">
@@ -24,7 +24,7 @@
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" name="tukhoa">
                 </div>
             </form>
             <br>
@@ -55,6 +55,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="col-lg-12 text-center">
+                {!! $DStheloai->render() !!}
+            </div>
         </div>
         <!-- /.row -->
     </div>

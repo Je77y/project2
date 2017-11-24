@@ -57,6 +57,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="col-lg-12 text-center">
+                {!! $DSloaitin->render() !!}
+            </div>
         </div>
         <!-- /.row -->
     </div>
