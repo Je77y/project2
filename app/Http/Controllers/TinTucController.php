@@ -11,7 +11,7 @@ class TinTucController extends Controller
 {
     public function getDanhSach()
     {
-    	$DStintuc = TinTuc::Paginate(9);
+    	$DStintuc = TinTuc::orderBy('updated_at', 'DESC')->Paginate(9);
     	return view('admin/tintuc/danhsach', compact('DStintuc'));
     }
 
@@ -79,15 +79,59 @@ class TinTucController extends Controller
     public function getSua($id)
     {
     	$tintuc = TinTuc::find($id);
-    	return view('admin/tintuc/sua', compact('tintuc'));
+        $DStheloai = TheLoai::all(['id', 'Ten']);
+        $DSloaitin = LoaiTin::all(['id', 'Ten', 'idTheLoai']);
+    	return view('admin/tintuc/sua', compact(['tintuc', 'DStheloai', 'DSloaitin']));
     }
 
     public function postSua(Request $request, $id)
     {
+        $this->validate($request, 
+            [
+                'idLoaiTin'=>'required',
+                'tieude'=>'required|min:3|max:100',
+                'tomtat'=>'required',
+                'noidung'=>'required'
+            ], 
+            [
+                'idLoaiTin.required'=>'Ban chua chon loai tin',
+                'tieude.required'=>'Ban chua nhap tieu de',
+                'tieude.min'=>'Tieu de qua ngan',
+                'tieude.max'=>'Tieu de qua dai',
+                'tomtat.required'=>'Ban chua nhap tom tat',
+                'noidung.required'=>'Ban chua nhap noi dung'
+        ]);
     	$tintuc = TinTuc::find($id);
+
+        $tintuc->idLoaiTin = $request->get('idLoaiTin');
+        $tintuc->TieuDe = $request->get('tieude');
+        $tintuc->TieuDeKhongDau = changeTitle($request->get('tieude'));
+        $tintuc->TomTat = $request->get('tomtat');
+        $tintuc->NoiBat = $request->get('noibat');
+
+        if ($request->hasFile('hinhanh'))
+        {
+            $file = $request->file('hinhanh');
+            $duoi = $file->getClientOriginalExtension();
+            if ($duoi != 'jpg' && $duoi != 'jpeg' && $duoi != 'png')
+            {
+                return redirect('admin/tintuc/sua/'.$id)->with('loi', 'Ban chi co the chon file co duoi la jpg, png hoac jpeg');
+            }
+            $name = $file->getClientOriginalName();
+            $Hinh = str_random(4)."_". $name;
+            while (file_exists("upload/tintuc/".$Hinh))
+            {
+                $Hinh = str_random(4)."_". $name;
+            }
+            $file->move("upload/tintuc", $Hinh);
+            $tintuc->Hinh = $Hinh;
+        }
+
+        $tintuc->save();
+        return redirect('admin/tintuc/sua/'.$id)->with('thongbao', 'Sua thanh cong');
     }
 
-    public function postXoa($id)
+    public function getXoa($id)
     {
     	$tintuc = TinTuc::find($id);
     	$tintuc->delete();

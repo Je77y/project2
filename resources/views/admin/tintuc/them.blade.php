@@ -57,16 +57,15 @@
                     <fieldset class="form-group">
                         <label>Noi bat</label>
                         <div class="form-check">
-                            <input class="form-check-input" name="noibat" id="optionsRadios1" value="option1" checked="" type="radio"> Co
+                            <input class="form-check-input" name="noibat" checked type="radio"> Co
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="noibat" id="optionsRadios2" value="option2" type="radio"> Khong
+                            <input class="form-check-input" name="noibat" type="radio"> Khong
                         </div>
                     </fieldset>
                     <div class="form-group">
                         <label>File input</label>
                         <input class="form-control-file" name="hinhanh" type="file">
-                        
                     </div>
                     <button type="submit" class="btn btn-primary">Them</button>
                     <button type="reset" class="btn btn-default">Lam moi</button>
@@ -81,12 +80,12 @@
 
 @section('script')
     <script>
-        $(document).ready(function(){
-            $("#TheLoai").change(function(){
+        $(document).ready(function() {
+            $("#TheLoai").change(function() {
                 var idTheLoai = $(this).val();
-                $.get('admin/ajax/loaitin/'+idTheLoai, function(data){
+                $.get('admin/ajax/loaitin/'+idTheLoai, function(data) {
                     $('#LoaiTin').html(data);
-                })
+                });
             });
         });
     </script>

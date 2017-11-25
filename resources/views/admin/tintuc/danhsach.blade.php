@@ -8,6 +8,15 @@
                             <small>Danh sach</small>
                         </h1>
             </div>
+
+            @if (session('thongbao'))
+            <div class="col-lg-12">
+                <div class="alert alert-success">
+                    {{ session('thongbao') }}
+                </div>
+            </div>
+            @endif 
+
             <!-- /.col-lg-12 -->
             <form action="#" method="POST" accept-charset="utf-8" class="form-inline">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -20,6 +29,7 @@
                     <input type="text" class="form-control" placeholder="Search" name="tukhoa">
                 </div>
             </form>
+            <br/>
             <table class="table table-striped table-hover" id="dataTables-example">
                 <thead>
                     <tr>
