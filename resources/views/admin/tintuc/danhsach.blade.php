@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Category
-                            <small>Danh sach</small>
+                <h1 class="page-header">Tin tức
+                            <small>Danh sách</small>
                         </h1>
             </div>
 
@@ -34,11 +34,11 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Ten</th>
-                        <th>Tom tat</th>
-                        <th>Loai tin</th>
+                        <th>Tên</th>
+                        <th>Tóm tắt</th>
+                        <th>Loại tin</th>
                         <th>Xem</th>
-                        <th>Noi bat</th>
+                        <th>Nổi bật</th>
                         <th></th>
                     </tr>
                 </thead>

@@ -5,8 +5,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tin tuc
-                            <small>Add</small>
+                <h1 class="page-header">Tin tức
+                            <small>Thêm mới</small>
                         </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -27,7 +27,7 @@
                 <form action="admin/tintuc/them" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label>The loai</label>
+                        <label>Thể loại</label>
                         <select class="form-control" name="idTheLoai" id="TheLoai">
                             @foreach ($DStheloai as $theloai)
                             <option value="{{ $theloai->id }}">{{ $theloai->Ten }}</option>
@@ -35,7 +35,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Loai tin</label>
+                        <label>Loại tin</label>
                         <select class="form-control" name="idLoaiTin" id="LoaiTin">
                             @foreach ($DSloaitin as $loaitin)
                             <option value="{{ $loaitin->id }}">{{ $loaitin->Ten }}</option>
@@ -43,32 +43,32 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Tieu de</label>
+                        <label>Tiêu đề</label>
                         <input class="form-control" name="tieude" placeholder="Tieu de bai viet" />
                     </div>
                     <div class="form-group">
-                        <label>Tom tat</label>
+                        <label>Tóm tắt</label>
                         <textarea class="form-control ckeditor" rows="3" name="tomtat" placeholder="Tom tat"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Noi dung</label>
+                        <label>Nội dung</label>
                         <textarea name="noidung" class="form-control ckeditor" rows="12" placeholder="Noi dung chinh"></textarea>
                     </div>
                     <fieldset class="form-group">
-                        <label>Noi bat</label>
+                        <label>Nởi bật</label>
                         <div class="form-check">
-                            <input class="form-check-input" name="noibat" checked type="radio"> Co
+                            <input class="form-check-input" name="noibat" checked type="radio"> Có
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="noibat" type="radio"> Khong
+                            <input class="form-check-input" name="noibat" type="radio"> Không
                         </div>
                     </fieldset>
                     <div class="form-group">
-                        <label>File input</label>
+                        <label>Hình ảnh</label>
                         <input class="form-control-file" name="hinhanh" type="file">
                     </div>
-                    <button type="submit" class="btn btn-primary">Them</button>
-                    <button type="reset" class="btn btn-default">Lam moi</button>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                    <button type="reset" class="btn btn-default">Làm mới</button>
                     <form>
             </div>
         </div>

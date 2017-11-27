@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\TinTuc;
 use App\LoaiTin;
 use App\TheLoai;
+use App\Comment;
 
 class TinTucController extends Controller
 {
     public function getDanhSach()
     {
-    	$DStintuc = TinTuc::orderBy('updated_at', 'DESC')->Paginate(9);
+    	$DStintuc = TinTuc::orderBy('id', 'DESC')->Paginate(9);
     	return view('admin/tintuc/danhsach', compact('DStintuc'));
     }
 
@@ -81,7 +82,8 @@ class TinTucController extends Controller
     	$tintuc = TinTuc::find($id);
         $DStheloai = TheLoai::all(['id', 'Ten']);
         $DSloaitin = LoaiTin::all(['id', 'Ten', 'idTheLoai']);
-    	return view('admin/tintuc/sua', compact(['tintuc', 'DStheloai', 'DSloaitin']));
+        $DScomment = Comment::where('idTinTuc', $id)->get();
+    	return view('admin/tintuc/sua', compact(['tintuc', 'DStheloai', 'DSloaitin', 'DScomment']));
     }
 
     public function postSua(Request $request, $id)
