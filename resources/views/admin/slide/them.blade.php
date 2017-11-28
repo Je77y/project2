@@ -26,6 +26,7 @@
             <!-- /.col-lg-12 -->
             <div class="col-lg-12" style="padding-bottom:120px">
                 <form action="admin/slide/them" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label>Tên</label>
                         <input class="form-control" name="ten" placeholder="Tên hình ảnh" />

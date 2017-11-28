@@ -22,17 +22,40 @@ class SlideController extends Controller
 
     public function postThem(SlideRequest $request)
     {
-        $ten = $request->input('ten');
-        $mota = $request->input('mota');
-        // return redirect('admin/slide/them')->with('thongbao','Them thanh cong');
+        $slide = new Slide;
+        $slide->Ten = $request->get('ten');
+        $slide->NoiDung = $request->get('mota');
+        $slide->link = $request->get('link');
+
+        if ($request->hasFile('hinhanh'))
+        {
+            $file = $request->file('hinhanh');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            {
+                return redirect('admin/slide/them')->with('loi', 'Bạn chỉ được chọn ảnh có đuôi là png, jpg hoặc jpeg');
+            }
+            $name = $file->getClientOriginalName();
+            $Hinh = str_random(4)."_". $name;
+            while(file_exists("upload/slide/".$Hinh))
+            {
+                $Hinh = str_random(4)."_". $name;
+            }
+            $file->move("upload/slide", $Hinh);
+            $slide->Hinh = $Hinh;
+        }
+        echo $slide->Hinh;
+        //$slide->save();
+        //return redirect('admin/slide/them')->with('thongbao', 'Thêm thành công');
     }
 
     public function getSua($id)
     {
-        return view('admin/slide/sua');
+        $slide = Slide::find($id);
+        return view('admin/slide/sua', compact('slide'));
     }
 
-    public function postSua(Request $request, $id)
+    public function postSua(SlideRequest $request, $id)
     {
 
     }

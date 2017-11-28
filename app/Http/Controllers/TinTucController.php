@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TinTucRequest;
 use App\TinTuc;
 use App\LoaiTin;
 use App\TheLoai;
@@ -23,25 +24,8 @@ class TinTucController extends Controller
     	return view('admin/tintuc/them', compact(['DSloaitin', 'DStheloai']));
     }
 
-    public function postThem(Request $request)
+    public function postThem(TinTucRequest $request)
     {
-    	$this->validate($request, 
-            [
-                'idLoaiTin'=>'required',
-                'tieude'=>'required|min:3|max:100|unique:TinTuc,TieuDe',
-                'tomtat'=>'required',
-                'noidung'=>'required'
-            ], 
-            [
-                'idLoaiTin.required'=>'Ban chua chon loai tin',
-                'tieude.required'=>'Ban chua nhap tieu de',
-                'tieude.min'=>'Tieu de qua ngan',
-                'tieude.max'=>'Tieu de qua dai',
-                'tieude.unique'=>'Tieu de da ton tai',
-                'tomtat.required'=>'Ban chua nhap tom tat',
-                'noidung.required'=>'Ban chua nhap noi dung'
-        ]);
-
         $tintuc = new TinTuc;
         $tintuc->TieuDe = $request->get('tieude');
         $tintuc->TieuDeKhongDau = changeTitle($request->get('tieude'));
@@ -72,7 +56,6 @@ class TinTucController extends Controller
         {
             $tintuc->Hinh = "";
         }
-
         $tintuc->save();
         return redirect('admin/tintuc/them')->with('thongbao', 'Ban da them thanh cong');
     }
@@ -86,23 +69,8 @@ class TinTucController extends Controller
     	return view('admin/tintuc/sua', compact(['tintuc', 'DStheloai', 'DSloaitin', 'DScomment']));
     }
 
-    public function postSua(Request $request, $id)
+    public function postSua(TinTucRequest $request, $id)
     {
-        $this->validate($request, 
-            [
-                'idLoaiTin'=>'required',
-                'tieude'=>'required|min:3|max:100',
-                'tomtat'=>'required',
-                'noidung'=>'required'
-            ], 
-            [
-                'idLoaiTin.required'=>'Ban chua chon loai tin',
-                'tieude.required'=>'Ban chua nhap tieu de',
-                'tieude.min'=>'Tieu de qua ngan',
-                'tieude.max'=>'Tieu de qua dai',
-                'tomtat.required'=>'Ban chua nhap tom tat',
-                'noidung.required'=>'Ban chua nhap noi dung'
-        ]);
     	$tintuc = TinTuc::find($id);
 
         $tintuc->idLoaiTin = $request->get('idLoaiTin');
@@ -139,14 +107,4 @@ class TinTucController extends Controller
     	$tintuc->delete();
     	return redirect('admin/tintuc/danhsach')->with('thongbao', 'Xoa thanh cong');
     }
-
-    // public function postTim(Request $request, $tukhoa)
-    // {
-    // 	// $tukhoa = $request->get('tukhoa');
-    // 	if (!isset($tukhoa))
-    // 		$DStintuc = TinTuc::Paginate(9);
-    // 	else
-	   //  	$DStintuc = TinTuc::where('TieuDe', 'LIKE', '%'.$tukhoa.'%')->simplePaginate(9);
-    // 	return view('admin/tintuc/danhsach', compact('DStintuc'));
-    // }
 }

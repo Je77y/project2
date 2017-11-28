@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TheLoai;
+use App\Http\Requests\TheLoaiRequest;
 
 class TheLoaiController extends Controller
 {
@@ -18,17 +19,17 @@ class TheLoaiController extends Controller
     	return view('admin/theloai/them');
     }
 
-    public function postThem(Request $request)
+    public function postThem(TheLoaiRequest $request)
     {
-        $this->validate($request, 
-            [
-                'name' => 'required|min:3|max:100|unique:TheLoai,Ten'
-            ],
-            [
-                'name.required'=>'Ban chua nhap ten the loai',
-                'name.min'=> 'Ten the loai phai co do dai tu 3 cho den 100 ky tu',
-                'name.unique'=>'Ten da ton tai'
-            ]);
+        // $this->validate($request, 
+        //     [
+        //         'name' => 'required|min:3|max:100|unique:TheLoai,Ten'
+        //     ],
+        //     [
+        //         'name.required'=>'Ban chua nhap ten the loai',
+        //         'name.min'=> 'Ten the loai phai co do dai tu 3 cho den 100 ky tu',
+        //         'name.unique'=>'Ten da ton tai'
+        //     ]);
         $theloai = new TheLoai;
         $theloai->Ten = $request->get('name');
         $theloai->TenKhongDau = changeTitle($request->get('name'));
@@ -42,19 +43,19 @@ class TheLoaiController extends Controller
     	return view('admin/theloai/sua', compact('theloai'));
     }
 
-    public function postSua(Request $request, $id)
+    public function postSua(TheLoaiRequest $request, $id)
     {
         $theloai = TheLoai::find($id);
-        $this->validate($request, 
-            [
-                'name'=>'required|min:3|max:100|unique:TheLoai,Ten'
-            ], 
-            [
-                'name.required'=>'Ban chua nhap ten the loai',
-                'name.min'=>'Ten the loai phai co do dai tu 3 cho den 100 ky tu',
-                'name.max'=>'Ten the loai phai co do dai tu 3 cho den 100 ky tu',
-                'name.unique'=>'Ten da ton tai'
-            ]);
+        // $this->validate($request, 
+        //     [
+        //         'name'=>'required|min:3|max:100|unique:TheLoai,Ten'
+        //     ], 
+        //     [
+        //         'name.required'=>'Ban chua nhap ten the loai',
+        //         'name.min'=>'Ten the loai phai co do dai tu 3 cho den 100 ky tu',
+        //         'name.max'=>'Ten the loai phai co do dai tu 3 cho den 100 ky tu',
+        //         'name.unique'=>'Ten da ton tai'
+        //     ]);
         $theloai->Ten = $request->get('name');
         $theloai->TenKhongDau = changeTitle($request->get('name'));
         $theloai->save();

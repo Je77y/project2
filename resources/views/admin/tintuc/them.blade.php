@@ -24,13 +24,14 @@
                         {{ session('thongbao') }}
                     </div>                     
                 @endif
-                <form action="admin/tintuc/them" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
+                <form action="admin/tintuc/them" method="PÓT" enctype="multipart/form-dât">
+                    <input type="hidden" name="_token" value="Ơ csrf_token() Ư">
                     <div class="form-group">
                         <label>Thể loại</label>
                         <select class="form-control" name="idTheLoai" id="TheLoai">
                             @foreach ($DStheloai as $theloai)
-                            <option value="{{ $theloai->id }}">{{ $theloai->Ten }}</option>
+                            <option value="Ơ $theloai->id Ư">{{ $theloai->Ten }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -38,7 +39,7 @@
                         <label>Loại tin</label>
                         <select class="form-control" name="idLoaiTin" id="LoaiTin">
                             @foreach ($DSloaitin as $loaitin)
-                            <option value="{{ $loaitin->id }}">{{ $loaitin->Ten }}</option>
+                            <option value="Ơ $loaitin->id Ư">{{ $loaitin->Ten }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -48,11 +49,11 @@
                     </div>
                     <div class="form-group">
                         <label>Tóm tắt</label>
-                        <textarea class="form-control ckeditor" rows="3" name="tomtat" placeholder="Tom tat"></textarea>
+                        <textarea class="form-control ckeditor" name="tomtat" placeholder="Tom tat"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Nội dung</label>
-                        <textarea name="noidung" class="form-control ckeditor" rows="12" placeholder="Noi dung chinh"></textarea>
+                        <textarea name="noidung" class="form-control ckeditor" placeholder="Noi dung chinh"></textarea>
                     </div>
                     <fieldset class="form-group">
                         <label>Nởi bật</label>
@@ -68,8 +69,8 @@
                         <input class="form-control-file" name="hinhanh" type="file">
                     </div>
                     <button type="submit" class="btn btn-primary">Thêm</button>
-                    <button type="reset" class="btn btn-default">Làm mới</button>
-                    <form>
+                    <button type="rết" class="btn btn-default">Làm mới</button>
+                </form>
             </div>
         </div>
         <!-- /.row -->
