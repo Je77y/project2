@@ -18,15 +18,15 @@
             @endif 
 
             <!-- /.col-lg-12 -->
-            <form action="#" method="POST" accept-charset="utf-8" class="form-inline">
+            <form action="#" method="POST" accept-charset="utf-8" class="form-inline pull-right">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="tukhoa">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search" name="tukhoa">
                 </div>
             </form>
             <br/>
@@ -60,8 +60,8 @@
                             @endif
                         </td>
                         <td class="center">
-                            <a href="/admin/tintuc/sua/{{ $tintuc->id }}"><i class="fa fa-pencil fa-fw"></i></a>
-                            <a href="/admin/tintuc/xoa/{{ $tintuc->id }}"><i class="fa fa-trash-o  fa-fw"></i></a>
+                            <a href="/admin/tintuc/sua/{{ $tintuc->id }}" style="color: #337ab7"><i class="fa fa-pencil fa-fw"></i></a>
+                            <a href="/admin/tintuc/xoa/{{ $tintuc->id }}" style="color: red"><i class="fa fa-trash-o  fa-fw"></i></a>
                         </td>
                     </tr>
                     @endforeach

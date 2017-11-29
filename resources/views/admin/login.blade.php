@@ -30,7 +30,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Dang nhap</h3>
+                        <h3 class="panel-title">Đăng nhập</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="" method="POST">
@@ -39,9 +39,9 @@
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Mat khau" name="password" type="password" required>
+                                    <input class="form-control" placeholder="Mật khẩu" name="password" type="password" required>
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-success btn-block">Dang nhap</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
                             </fieldset>
                         </form>
                     </div>

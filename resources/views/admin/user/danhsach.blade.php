@@ -4,51 +4,53 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Category
-                            <small>List</small>
+                <h1 class="page-header">User
+                            <small>Danh sach</small>
                         </h1>
             </div>
             <!-- /.col-lg-12 -->
-            <form action="" method="POST" accept-charset="utf-8" class="form-inline">
+            <form action="" method="POST" accept-charset="utf-8" class="form-inline pull-right" >
                 <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search">
                 </div>
             </form>
-            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <br/>
+            <br/>
+
+            <table class="table table-striped table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Category Parent</th>
-                        <th>Status</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th>Ten </th>
+                        <th>Email</th>
+                        <th>Ngay tao</th>
+                        <th>Ngay cap nhat</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>Tin Tức</td>
-                        <td>None</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
-                    <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>Bóng Đá</td>
-                        <td>Thể Thao</td>
-                        <td>Ẩn</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
+                    @foreach ($DSuser as $user)
+                        <tr class="odd gradeX">
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->created_at }}</td>
+                            <td>{{ $user->updated_at }}</td>
+                            <td class="center">
+                                <a href="/admin/user/xoa/{{ $user->id }}" style="color: red"><i class="fa fa-trash-o  fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+            <div class="col-lg-12 text-center">
+                {!! $DSuser->render() !!}
+            </div>
         </div>
         <!-- /.row -->
     </div>

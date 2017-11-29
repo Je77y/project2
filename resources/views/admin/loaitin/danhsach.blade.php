@@ -16,15 +16,15 @@
             </div>
             @endif
             <!-- /.col-lg-12 -->
-            <form action="" method="POST" accept-charset="utf-8" class="form-inline">
+            <form action="" method="POST" accept-charset="utf-8" class="form-inline pull-right">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search">
                 </div>
             </form>
             <br/>
@@ -50,8 +50,8 @@
                         <td>{{ $loaitin->created_at}}</td>
                         <td>{{ $loaitin->created_at}}</td>
                         <td class="center">
-                            <a href="/admin/loaitin/sua/{{ $loaitin->id }}"><i class="fa fa-pencil fa-fw"></i></a>
-                            <a href="/admin/loaitin/xoa/{{ $loaitin->id }}"><i class="fa fa-trash-o  fa-fw"></i></a>
+                            <a href="/admin/loaitin/sua/{{ $loaitin->id }}" style="color: #337ab7"><i class="fa fa-pencil fa-fw"></i></a>
+                            <a href="/admin/loaitin/xoa/{{ $loaitin->id }}" style="color: red"><i class="fa fa-trash-o  fa-fw"></i></a>
                         </td>
                     </tr>
                     @endforeach

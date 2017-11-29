@@ -31,9 +31,9 @@ class SlideController extends Controller
         {
             $file = $request->file('hinhanh');
             $duoi = $file->getClientOriginalExtension();
-            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            if ($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/slide/them')->with('loi', 'Bạn chỉ được chọn ảnh có đuôi là png, jpg hoặc jpeg');
+                return redirect('admin/slide/them')->with('loi', 'Ban chi duoc chon file co duoi la jpg, png hoac jpeg');
             }
             $name = $file->getClientOriginalName();
             $Hinh = str_random(4)."_". $name;
@@ -44,9 +44,12 @@ class SlideController extends Controller
             $file->move("upload/slide", $Hinh);
             $slide->Hinh = $Hinh;
         }
-        echo $slide->Hinh;
-        //$slide->save();
-        //return redirect('admin/slide/them')->with('thongbao', 'Thêm thành công');
+        else
+        {
+            $slide->Hinh = "";
+        }
+        $slide->save();
+        return redirect('admin/slide/them')->with('thongbao', 'Thêm thành công');
     }
 
     public function getSua($id)
@@ -57,11 +60,36 @@ class SlideController extends Controller
 
     public function postSua(SlideRequest $request, $id)
     {
+        $slide = Slide::find($id);
+        $slide->Ten = $request->get('ten');
+        $slide->NoiDung = $request->get('mota');
+        $slide->link = $request->get('link');
 
+        if ($request->hasFile('hinhanh'))
+        {
+            $file = $request->file('hinhanh');
+            $duoi = $file->getClientOriginalExtension();
+            if ($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            {
+                return redirect('admin/slide/them')->with('loi', 'Ban chi duoc chon file co duoi la jpg, png hoac jpeg');
+            }
+            $name = $file->getClientOriginalName();
+            $Hinh = str_random(4)."_". $name;
+            while(file_exists("upload/slide/".$Hinh))
+            {
+                $Hinh = str_random(4)."_". $name;
+            }
+            $file->move("upload/slide", $Hinh);
+            $slide->Hinh = $Hinh;
+        }
+        $slide->save();
+        return redirect('admin/slide/sua/'. $id)->with('thongbao', 'Sua thanh cong');
     }
 
     public function getXoa($id)
     {
-
+        $slide = Slide::find($id);
+        $slide->delete();
+        return redirect('admin/slide/danhsach')->with('thongbao', 'Xóa thành công');
     }
 }

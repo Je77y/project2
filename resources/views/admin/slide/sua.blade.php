@@ -15,16 +15,19 @@
                         {{ $err }}<br/>
                     @endforeach
                 </div>
-                @endif
-                @if (session('thongbao'))
-                <div class="alert alert-danger">
+                @elseif (session('loi'))
+                <div class="alert-danger alert">
+                    {{ session('loi') }}
+                </div>
+                @elseif (session('thongbao'))
+                <div class="alert alert-success">
                     {{ session('thongbao') }}
                 </div>
                 @endif
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-12" style="padding-bottom:120px">
-                <form action="admin/slide/sua/{{ $slide->id }}" method="POST">
+                <form action="admin/slide/sua/{{ $slide->id }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label>Tên</label>

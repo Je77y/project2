@@ -25,7 +25,7 @@
                     </div>                     
                 @endif
             </div>
-                <form action="admin/tintuc/them" method="PÓT" enctype="multipart/form-dât">
+                <form action="admin/tintuc/them" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="Ơ csrf_token() Ư">
                     <div class="form-group">
                         <label>Thể loại</label>

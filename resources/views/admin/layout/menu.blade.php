@@ -19,10 +19,7 @@
                 <a href="#"><i class="fa fa-users fa-fw"></i> Nguoi dung<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Danh sach nguoi dung</a>
-                    </li>
-                    <li>
-                        <a href="#">Them nguoi dung</a>
+                        <a href="admin/user/danhsach">Danh sach nguoi dung</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
