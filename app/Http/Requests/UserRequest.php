@@ -24,14 +24,18 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            
+            'email'=>'required',
+            'password'=>'required|min:3'
         ];
     }
 
     public function messages()
     {
         return [
-
+            'email.required'=>'Bạn chưa nhập email',
+            //'email.email'=>'Định dạng email sai',
+            'password.required'=>'Bạn chưa nhập mật khẩu',
+            'password.min'=>'Mật khẩu quá ngắn'
         ];
     }
 }

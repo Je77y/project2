@@ -3,11 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+    public function getDangNhapAdmin()
+    {
+        if (Auth::check())
+        {
+            return redirect('/');            
+        }
+        return view('admin/login');
+    }
+
+    public function postDangNhapAdmin(UserRequest $request)
+    {
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        // $user = User::where('email', $email)->where('password', $password)->where('level', 1)->first();
+        // if ($user)
+        // {
+        //     return redirect('/');
+        // }
+        $data = [
+            'email'         => $email,
+            'password'      => $password
+        ];
+        if (Auth::attempt(['email' => $email, 'password' => $password]))
+        {
+            return redirect('/');
+        }        
+        return redirect()->back()->with('thongbao', 'Email hoac mat khau khong dung');
+    }
+
+    public function getLogout()
+    {
+        return redirect('admin/dangnhap');
+    }
+
     public function getDanhSach()
     {
     	$DSuser = User::orderBy('created_at', 'DESC')->simplePaginate(9);

@@ -28,6 +28,7 @@
                         <th>ID</th>
                         <th>Ten </th>
                         <th>Email</th>
+                        <th>Level</th>
                         <th>Ngay tao</th>
                         <th>Ngay cap nhat</th>
                         <th></th>
@@ -39,6 +40,17 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>
+                                @if ($user->level == -1)
+                                    {!! "<span>Not activated</span>" !!}
+                                @elseif ($user->level == 0)
+                                    {!! "<span>User</span>" !!}
+                                @elseif ($user->level == 1)
+                                    {!! "<span>Admin</span>" !!}
+                                @else 
+                                    {!! "<span>Lock</span>" !!} 
+                                @endif
+                            </td>
                             <td>{{ $user->created_at }}</td>
                             <td>{{ $user->updated_at }}</td>
                             <td class="center">
@@ -57,4 +69,28 @@
     <!-- /.container-fluid -->
 </div>
 <!-- /#page-wrapper -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('td>span').each(function(){
+                var giatri = $(this).html();
+                switch (giatri) {
+                    case "Admin":
+                        $(this).addClass('label').addClass('label-primary');
+                        break;
+                    case "User":
+                        $(this).addClass('label').addClass('label-success');
+                        break;
+                    case "Not activated":
+                        $(this).addClass('label').addClass('label-warning');
+                        break;
+                    default:
+                        $(this).addClass('label').addClass('label-danger');
+                }
+            });
+            //location.reload();
+        });
+    </script>
 @endsection

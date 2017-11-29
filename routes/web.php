@@ -1,8 +1,11 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UserController@getDanhSach');
+
+Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
+Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
+
+Route::get('admin/dangxuat', 'UserController@getLogout');
 
 Route::group(['prefix'=>'admin'], function(){
 	Route::group(['prefix'=>'theloai'], function(){

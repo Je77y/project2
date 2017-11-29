@@ -18,7 +18,8 @@ class UserTableSeeder extends Seeder
     		User::create([
     			'name' 		=> $faker->firstNameFemale,
     			'email'		=> $faker->email,
-    			'password'	=> $faker->password
+    			'password'	=> $faker->password,
+                'level'     => $faker->numberBetween(-1, 1)
     		]);
     	}
     }
