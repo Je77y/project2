@@ -26,21 +26,24 @@ class UserController extends Controller
         // $user = User::where('email', $email)->where('password', $password)->where('level', 1)->first();
         // if ($user)
         // {
-        //     return redirect('/');
+        //     session('taikhoan', $user);
+        //     return redirect('/');;
         // }
         $data = [
             'email'         => $email,
             'password'      => $password
         ];
-        if (Auth::attempt(['email' => $email, 'password' => $password]))
+        // Luu y: Khi su dung attempt ban phai ma hoa mat khau
+        if (Auth::attempt($data))
         {
             return redirect('/');
         }        
         return redirect()->back()->with('thongbao', 'Email hoac mat khau khong dung');
     }
 
-    public function getLogout()
+    public function getLogout(Request $request)
     {
+        Auth::logout();
         return redirect('admin/dangnhap');
     }
 

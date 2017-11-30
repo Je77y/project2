@@ -17,13 +17,15 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> Ho so cua ban</a>
+                @if (isset($user_login))
+                <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ $user_login->name }}</a>
                 </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cai dat</a>
+                <li><a href="admin/user/sua/{{ $user_login->id }}"><i class="fa fa-gear fa-fw"></i> Cai dat</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Dang xuat</a>
+                <li><a href="admin/dangxuat"><i class="fa fa-sign-out fa-fw"></i> Dang xuat</a>
                 </li>
+                @endif
             </ul>
             <!-- /.dropdown-user -->
         </li>

@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'UserController@getDanhSach');
+Route::get('/', 'PageController@trangchu');
 
 Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
@@ -74,6 +74,7 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::post('sua/{id}', 'UserController@postSua');
 
 		Route::get('xoa/{id}', 'UserController@getXoa');
+
 	});
 
 	Route::group(['prefix'=>'ajax'], function(){
@@ -81,3 +82,18 @@ Route::group(['prefix'=>'admin'], function(){
 	});
 
 });
+
+Route::get('trangchu', 'PageController@trangchu');
+Route::get('lienhe', 'PageController@lienhe');
+Route::get('gioithieu', 'PageController@gioithieu');
+
+Route::get('loaitin/{id}', 'PageController@loaitin');
+Route::get('tintuc/{id}/{TenKhongDau}', 'PageController@tintuc');
+
+Route::get('dangnhap', 'PageController@getDangNhap');
+Route::post('dangnhap', 'PageController@postDangNhap');
+
+Route::get('dangky', 'PageController@getDangKy');
+Route::post('dangky', 'PageController@postDangKy');
+
+Route::get('dangxuat', 'PageController@dangxuat');

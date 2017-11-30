@@ -13,12 +13,12 @@ class UserTableSeeder extends Seeder
     public function run()
     {
     	$faker = Faker\Factory::create();
-
+        $password = bcrypt('123456');
     	for ($i = 0; $i < 20; $i++) {
     		User::create([
     			'name' 		=> $faker->firstNameFemale,
     			'email'		=> $faker->email,
-    			'password'	=> $faker->password,
+    			'password'	=> $password,
                 'level'     => $faker->numberBetween(-1, 1)
     		]);
     	}

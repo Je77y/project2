@@ -1,4 +1,4 @@
-@extends('admin/layout/index') @section('title', 'Danh sach the loai') @section('content')
+@extends('admin/layout/index') @section('title', 'Danh sach nguoi dung') @section('content')
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -42,13 +42,11 @@
                             <td>{{ $user->email }}</td>
                             <td>
                                 @if ($user->level == -1)
-                                    {!! "<span>Not activated</span>" !!}
+                                    {!! "<span>Lock</span>" !!}
                                 @elseif ($user->level == 0)
                                     {!! "<span>User</span>" !!}
                                 @elseif ($user->level == 1)
                                     {!! "<span>Admin</span>" !!}
-                                @else 
-                                    {!! "<span>Lock</span>" !!} 
                                 @endif
                             </td>
                             <td>{{ $user->created_at }}</td>
@@ -82,9 +80,6 @@
                         break;
                     case "User":
                         $(this).addClass('label').addClass('label-success');
-                        break;
-                    case "Not activated":
-                        $(this).addClass('label').addClass('label-warning');
                         break;
                     default:
                         $(this).addClass('label').addClass('label-danger');
