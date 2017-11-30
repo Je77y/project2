@@ -64,17 +64,6 @@ class UserController extends Controller
     	return redirect('admin/user/them')->with('thongbao', 'Them thanh cong');
     }
 
-    public function getSua($id)
-    {
-    	$user = User::find($id);
-    	return view('admin/user/sua', compact('user'));
-    }
-
-    public function postSua(UserRequest $request, $id)
-    {
-    	return redirect('admin/user/sua/'. $id)->with('thongbao', 'Sua thanh cong');
-    }
-
     public function getXoa($id)
     {
     	$user = User::find($id);

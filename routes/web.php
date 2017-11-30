@@ -96,4 +96,11 @@ Route::post('dangnhap', 'PageController@postDangNhap');
 Route::get('dangky', 'PageController@getDangKy');
 Route::post('dangky', 'PageController@postDangKy');
 
+Route::get('taikhoan', 'PageController@getTaiKhoan');
+Route::post('taikhoan', 'PageController@postTaiKhoan');
+
 Route::get('dangxuat', 'PageController@dangxuat');
+
+Route::post('binhluan/{id}/{tenbaiviet}', 'CommentController@binhluan');
+
+Route::post('timkiem', 'PageController@timkiem');
