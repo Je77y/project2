@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class AdminLoginMiddleware
 {
@@ -15,11 +16,13 @@ class AdminLoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (session('taikhoan'))
+        if (Auth::check())
         {
-            $user = session('taikhoan');
+            $user = Auth::User();
             if ($user->level == 1)
                 return $next($request);
+            elseif ($user->level == 0)
+                return redirect('/');
         }
         return redirect('admin/dangnhap');
     }

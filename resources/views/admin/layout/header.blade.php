@@ -17,10 +17,10 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
             <ul class="dropdown-menu dropdown-user">
-                @if (isset($user_login))
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ $user_login->name }}</a>
+                @if (Auth::User())
+                <li class="disabled"><a href="#"><i class="fa fa-user fa-fw"></i> {{ Auth::User()->name }}</a>
                 </li>
-                <li><a href="admin/user/sua/{{ $user_login->id }}"><i class="fa fa-gear fa-fw"></i> Cai dat</a>
+                <li><a href="admin/user/sua"><i class="fa fa-gear fa-fw"></i> Cai dat</a>
                 </li>
                 <li class="divider"></li>
                 <li><a href="admin/dangxuat"><i class="fa fa-sign-out fa-fw"></i> Dang xuat</a>

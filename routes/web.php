@@ -7,7 +7,9 @@ Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
 
 Route::get('admin/dangxuat', 'UserController@getLogout');
 
-Route::group(['prefix'=>'admin'], function(){
+Route::get('admin', 'AdminController@trangchu');
+
+Route::group(['prefix'=>'admin', 'middleware'=>'adminLogin'], function(){
 	Route::group(['prefix'=>'theloai'], function(){
 		Route::get('danhsach', 'TheLoaiController@getDanhSach');
 
@@ -70,8 +72,8 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::get('them', 'UserController@getThem');
 		Route::post('them', 'UserController@postThem');
 
-		Route::get('sua/{id}', 'UserController@getSua');
-		Route::post('sua/{id}', 'UserController@postSua');
+		Route::get('sua', 'UserController@getSua');
+		Route::post('sua', 'UserController@postSua');
 
 		Route::get('xoa/{id}', 'UserController@getXoa');
 

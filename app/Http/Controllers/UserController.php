@@ -36,7 +36,7 @@ class UserController extends Controller
         // Luu y: Khi su dung attempt ban phai ma hoa mat khau
         if (Auth::attempt($data))
         {
-            return redirect('/');
+            return redirect('admin');
         }        
         return redirect()->back()->with('thongbao', 'Email hoac mat khau khong dung');
     }
@@ -62,6 +62,38 @@ class UserController extends Controller
     {
 
     	return redirect('admin/user/them')->with('thongbao', 'Them thanh cong');
+    }
+
+    public function getSua()
+    {
+        $id = Auth::User()->id;
+        $user = User::find($id);
+        return view('admin/user/caidat', compact('user'));
+    }
+
+    public function postSua(Request $request)
+    {
+        if ($request->get('checkpass') == "on")
+        {
+            $this->validate($request, 
+                [
+                    'password'      => 'required|min:5|max:100',
+                    'passwordAgain' => 'required|same:password'
+                ], 
+                [
+                    'password.required'=>'Ban chua nhap mat khau',
+                    'password.min'=>'Mat khau qua ngan',
+                    'password.max'=>'Mat khau qua dai',
+                    'passwordAgain.required'=>'Ban chua nhap lai mat khau',
+                    'passwordAgain.same'=>'Mat khau nhap lai khong khop'
+            ]);
+            $user = Auth::User();
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+
+            return redirect('admin/user/sua')->with('thongbao', 'Ban da thay doi mat khau thanh cong');
+        }
+        return redirect('admin/user/sua');
     }
 
     public function getXoa($id)
