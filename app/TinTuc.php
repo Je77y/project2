@@ -10,11 +10,11 @@ class TinTuc extends Model
 
     public function loaitin()
     {
-    	return $this->belongsTo(LoaiTin::class);
+    	return $this->belongsTo(LoaiTin::class, 'idLoaiTin', 'id');
     }
 
     public function comment()
     {
-    	return $this->hasMany(Comment::class);
+    	return $this->hasMany(Comment::class, 'idTinTuc', 'id');
     }
 }

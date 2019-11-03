@@ -10,11 +10,11 @@ class Comment extends Model
 
     public function tintuc()
     {
-    	return $this->belongsTo(TinTuc::class);
+    	return $this->belongsTo(TinTuc::class, 'idTinTuc', 'id');
     }
 
     public function user()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(User::class, 'idUser', 'id');
     }
 }
